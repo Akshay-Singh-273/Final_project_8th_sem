@@ -44,9 +44,10 @@ def predictRouteClient():
             path = request.form['filepath']
 
             pred_val = pred_validation(path) #object initialization
-            return Response(path+"test 1")
+            
 
             pred_val.prediction_validation() #calling the prediction_validation function
+            return Response(path+"test 1")
 
             pred = prediction(path) #object initialization
 
