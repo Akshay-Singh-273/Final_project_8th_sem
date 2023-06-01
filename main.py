@@ -45,7 +45,7 @@ def predictRouteClient():
                 x.append(random.randint(400))
             for val in x:
                 output.append(pd.read_csv(out_path, skiprows=val-1, nrows = 1))
-            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are "+ str(json.loads(output))
+            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are "+ str(json.loads(output)))
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
