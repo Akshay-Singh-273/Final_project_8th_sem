@@ -1,5 +1,5 @@
 from wsgiref import simple_server
-from pandas as pd
+import pandas as pd
 from numpy import random
 from flask import Flask, request, render_template
 from flask import Response
