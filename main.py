@@ -50,10 +50,11 @@ def predictRouteClient():
             
 
             pred = prediction(path) #object initialization
-            return Response(path+"test 2")
+            
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
+            return Response(path+"test 3")
             return Response("Prediction File created at !!!"  +str(path) +'and few of the predictions are '+str(json.loads(json_predictions) ))
         else:
             print('Nothing Matched')
