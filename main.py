@@ -29,7 +29,7 @@ def predictRouteClient():
     try:
         if request.json is not None:
             path = request.json['filepath']
-
+            return Response(path)
             pred_val = pred_validation(path) #object initialization
 
             pred_val.prediction_validation() #calling the prediction_validation function
