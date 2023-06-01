@@ -11,8 +11,7 @@ from training_Validation_Insertion import train_validation
 import flask_monitoringdashboard as dashboard
 from predictFromModel import prediction
 import json
-output = []
-data = pd.read_csv("Prediction_Output_File/Predictions.csv")
+
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
 
@@ -53,8 +52,15 @@ def predictRouteClient():
             
 
             pred = prediction(path) #object initialization
-            while len(output) < 5:
-                output.append(data[random.randint(400)])
+           
+            output = []
+            x = []
+            out_path = "Prediction_Output_File/Predictions.csv"
+            while len(x) < 5:
+                x.append(random.randint(400))
+            for val in x:
+                output.append(pd.read_csv(out_path, skiprows=val-1, nrows = 1))
+
             return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are "+ output)
 
             # predicting for dataset present in database
