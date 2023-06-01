@@ -38,6 +38,7 @@ def predictRouteClient():
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
+            return Response("test!!")
             return Response("Prediction File created at !!!"  +str(path) +'and few of the predictions are '+str(json.loads(json_predictions) ))
         elif request.form is not None:
             path = request.form['filepath']
@@ -54,11 +55,11 @@ def predictRouteClient():
         else:
             print('Nothing Matched')
     except ValueError:
-        return Response("Error Occurred! %s" %ValueError)
+        return Response("Error Occurred! value error %s" %ValueError)
     except KeyError:
-        return Response("Error Occurred! %s" %KeyError)
+        return Response("Error Occurred! key error %s" %KeyError)
     except Exception as e:
-        return Response("Error Occurred! %s" %e)
+        return Response("Error Occurred! exception %s" %e)
 
 
 
