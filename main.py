@@ -1,4 +1,6 @@
 from wsgiref import simple_server
+from pandas as pd
+from numpy import random
 from flask import Flask, request, render_template
 from flask import Response
 import os
@@ -9,7 +11,8 @@ from training_Validation_Insertion import train_validation
 import flask_monitoringdashboard as dashboard
 from predictFromModel import prediction
 import json
-
+output = []
+data = pd.read_csv("Prediction_Output_File/Predictions.csv")
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
 
@@ -50,7 +53,9 @@ def predictRouteClient():
             
 
             pred = prediction(path) #object initialization
-            
+            while len(output) < 5:
+                output.append(data[random.randint(400)])
+            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are "+ output)
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
