@@ -47,9 +47,10 @@ def predictRouteClient():
             
 
             pred_val.prediction_validation() #calling the prediction_validation function
-            return Response(path+"test 1")
+            
 
             pred = prediction(path) #object initialization
+            return Response(path+"test 2")
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
