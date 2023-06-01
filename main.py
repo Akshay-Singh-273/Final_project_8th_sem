@@ -12,6 +12,9 @@ import flask_monitoringdashboard as dashboard
 from predictFromModel import prediction
 import json
 
+output = []
+x = []
+out_path = "Prediction_Output_File/Predictions.csv"
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
 
@@ -37,6 +40,12 @@ def predictRouteClient():
             pred_val.prediction_validation() #calling the prediction_validation function
 
             pred = prediction(path) #object initialization
+            
+            while len(x) < 5:
+                x.append(random.randint(400))
+            for val in x:
+                output.append(pd.read_csv(out_path, skiprows=val-1, nrows = 1))
+            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are ", output)
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
@@ -53,15 +62,12 @@ def predictRouteClient():
 
             pred = prediction(path) #object initialization
            
-            output = []
-            x = []
-            out_path = "Prediction_Output_File/Predictions.csv"
             while len(x) < 5:
                 x.append(random.randint(400))
             for val in x:
                 output.append(pd.read_csv(out_path, skiprows=val-1, nrows = 1))
 
-            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are "+ output)
+            return Response("Prediction File created at !!!"  +str(path) +"and few of the predictions are ", output)
 
             # predicting for dataset present in database
             path,json_predictions = pred.predictionFromModel()
