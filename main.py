@@ -42,6 +42,7 @@ def predictRouteClient():
             return Response("Prediction File created at !!!"  +str(path) +'and few of the predictions are '+str(json.loads(json_predictions) ))
         elif request.form is not None:
             path = request.form['filepath']
+            return Response(path)
 
             pred_val = pred_validation(path) #object initialization
 
